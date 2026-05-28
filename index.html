@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITE CABANA</title>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🍹 CABANA DAS BEBIDAS</div>
+
+        <nav>
+            <a href="#home">Início</a>
+            <a href="#produtos">Bebidas</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+
+
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h1>Seu depósito de bebidas favorito</h1>
+            <p>As melhores bebidas geladas com entrega rápida na sua região.</p>
+            <button onclick="passPage()">Peça Agora</button>
+        </div>
+    </section>
+
+
+
+    <section class="produtos" id="produtos">
+        <h2>Nossos Produtos</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="imagens/heinekenlong.png" alt="Cerveja">
+                <h3>Heineken Long Neck</h3>
+                <p>Cerveja premium extremamente gelada.</p>
+                <span>R$ 7,50</span>
+                <button onclick="abrirModal('Heineken Long Neck', 7.50)">Comprar</button>
+            </div>
+
+
+
+            <div class="card">
+                <img src="imagens/budweiserlata.png" alt="Cerveja">
+                <h3>Budweiser Lata</h3>
+                <p>Cerveja premium extremamente gelada.</p>
+                <span>R$ 6,00</span>
+                <button onclick="abrirModal('Budweiser', 6.00)">Comprar</button>
+            </div>
+
+
+
+            <div class="card">
+                <img src="imagens/amstellata.png" alt="Cerveja">
+                <h3>Amstel</h3>
+                <p>Cerveja extremamente gelada.</p>
+                <span>R$ 4,00</span>
+                <button onclick="abrirModal('Amstel', 4.00)">Comprar</button>
+            </div>
+
+
+
+            <div class="card">
+                <img src="imagens/itaipavalata.png" alt="Cerveja">
+                <h3>Itaipava Lata</h3>
+                <p>Cerveja extremamente gelada.</p>
+                <span>R$ 3,75</span>
+                <button onclick="abrirModal('Itaipava', 3.75)">Comprar</button>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+    <section class="carrinho">
+
+        <h2>🛒 Carrinho</h2>
+
+        <ul id="lista-carrinho"></ul>
+
+        <h3 id="total">Total: R$ 0,00</h3>
+
+    </section>
+
+
+
+    <section class="sobre" id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>
+            Trabalhamos com entrega rápida, bebidas geladas e atendimento de qualidade.
+            Nosso objetivo é levar praticidade até você.
+        </p>
+    </section>
+
+
+
+
+    <footer id="contato">
+        <h3>Contato</h3>
+        <p>📞 (79) 99999-9999</p>
+        <p>📍 RUA VENERAVÉL VALDOMIRO TEOFILO DOS SANTOS N542</p>
+        <p>©CABANA DAS BEBIDAS</p>
+    </footer>
+
+
+    <div class="modal" id="modal">
+
+        <div class="modal-content">
+
+            <span class="fechar" onclick="fecharModal()">&times;</span>
+
+            <h2 id="modal-produto"></h2>
+
+            <label>Tipo:</label>
+
+            <select id="tipo">
+                <option value="unidade">Unidade</option>
+                <option value="caixa">Caixa</option>
+            </select>
+
+            <label>Quantidade:</label>
+
+            <input type="number" id="quantidade" min="1" value="1">
+
+            <button onclick="adicionarCarrinho()">
+                Adicionar ao Carrinho
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
