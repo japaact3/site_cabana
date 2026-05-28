@@ -76,3 +76,67 @@ function atualizarCarrinho() {
     totalTexto.innerText =
         `Total: R$ ${total.toFixed(2)}`
 }
+
+
+function finalizarPedido(){
+
+    if(carrinho.length == 0){
+
+        alert("Seu carrinho está vazio!")
+
+        return
+    }
+
+    let tipoEntrega = document.getElementById("tipo-entrega").value
+
+    let endereco = document.getElementById("endereco").value
+
+    if(tipoEntrega == "Entrega" && endereco == ""){
+
+        alert("Digite o endereço para entrega!")
+
+        return
+    }
+
+    let mensagem = "🍹 *NOVO PEDIDO - CABANA DAS BEBIDAS* %0A%0A"
+
+    carrinho.forEach(item => {
+
+        mensagem += `• ${item}%0A`
+
+    })
+
+    mensagem += `%0A💰 Total: R$ ${total.toFixed(2)}%0A`
+
+    mensagem += `%0A🚚 Tipo: ${tipoEntrega}%0A`
+
+    if(tipoEntrega == "Entrega"){
+
+        mensagem += `📍 Endereço: ${endereco}%0A`
+    }
+
+    let telefone = "5579988342388"
+
+    let url = `https://wa.me/${telefone}?text=${mensagem}`
+
+    window.open(url, "_blank")
+}
+
+
+function mostrarEndereco(){
+
+    let tipo =
+        document.getElementById("tipo-entrega").value
+
+    let endereco =
+        document.getElementById("endereco")
+
+    if(tipo == "Entrega"){
+
+        endereco.style.display = "block"
+
+    } else {
+
+        endereco.style.display = "none"
+    }
+}
