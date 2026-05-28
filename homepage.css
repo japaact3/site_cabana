@@ -102,7 +102,7 @@ nav a{
 .cards{
     display: grid;
 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
 
     gap: 30px;
 
