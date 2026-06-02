@@ -126,8 +126,14 @@ function sendWhatsApp(){
 
     message += `💰 *TOTAL: R$ ${total.toFixed(2)}*\n`;
 
-    const payment =
-        document.getElementById("paymentMethod").value;
+    let payment = "";
+
+    const paymentEl = document.getElementById("paymentMethod");
+
+    if(paymentEl){
+        payment = paymentEl.value;
+    }
+
 
     message += `💳 *Pagamento:* ${payment}\n`;
 
