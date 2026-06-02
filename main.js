@@ -11,7 +11,7 @@ let boxPrice = 0;
 const precosBebidas = {
     "Vodka Slova": 13,
     "Vodka Smirnoff": 15,
-    "Gin": 16,
+    "Gin": 14,
     "Whisky Black White": 16,
     "Whisky White Horse": 18,
     "Whisky Red Label": 20
@@ -149,7 +149,7 @@ function sendWhatsApp(){
         message += `💵 *Troco para:* R$ ${changeValue}\n\n`;
     }
 
-    const phone = "5579988342388";
+    const phone = "5579981656921";
 
     window.open(
         `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
@@ -229,7 +229,7 @@ function addCombo(){
     const precosBebidas = {
     "Vodka Slova": 13,
     "Vodka Smirnoff": 15,
-    "Gin": 16,
+    "Gin": 14,
     "Whisky Black White": 16,
     "Whisky White Horse": 18,
     "Whisky Red Label": 20
@@ -263,6 +263,15 @@ function updateComboPrice(){
     document.getElementById("comboPrice")
         .textContent = `R$ ${preco.toFixed(2)}`;
 }
+
+
+
+
+
+
+
+
+
 
 function openCheckoutModal(){
 
