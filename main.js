@@ -104,89 +104,67 @@ function updateCart(){
 
 function sendWhatsApp(){
 
-
     const deliveryType =
         document.getElementById("deliveryType").value;
 
     const address =
         document.getElementById("deliveryAddress").value;
 
+    const payment =
+        document.getElementById("paymentMethod").value;
+
+    const changeValue =
+        document.getElementById("changeValue").value;
+
     let message = "🍻 *PEDIDO CABANA DAS BEBIDAS*\n";
     message += "━━━━━━━━━━━━━━\n\n";
 
     cart.forEach(item => {
 
-    message += `🍺 *${item.product}*\n\n`;
-    message += `   ▸ Tipo: ${item.type}\n\n`;
-    message += `   ▸ Qtd: ${item.quantity}\n\n`;
-    message += `   ▸ Valor: R$ ${item.price}\n\n`;
-    message += "──────────────\n\n";
+        message += `🍺 *${item.product}*\n`;
+        message += `   ▸ Tipo: ${item.type}\n`;
+        message += `   ▸ Qtd: ${item.quantity}\n`;
+        message += `   ▸ Valor: R$ ${item.price}\n`;
+        message += "──────────────\n\n";
 
     });
 
-    message += `💰 *TOTAL: R$ ${total.toFixed(2)}*\n`;
+    message += `💰 *TOTAL: R$ ${total.toFixed(2)}*\n\n`;
 
-    let payment = "";
+    message += `💳 *Pagamento:* ${payment}\n\n`;
 
-    const paymentEl = document.getElementById("paymentMethod");
-
-    if(paymentEl){
-        payment = paymentEl.value;
-    }
-
-
-    message += `💳 *Pagamento:* ${payment}\n`;
-
-    message += `%0A📦 Forma de Recebimento:%0A`;
-    message += `${deliveryType}%0A`;
+    message += `📦 *Forma de Recebimento:* ${deliveryType}\n\n`;
 
     if(deliveryType === "Entrega"){
 
         if(address.trim() === ""){
-
             alert("Digite o endereço de entrega.");
-
             return;
         }
 
-        message += `%0A📍 Endereço:%0A${address}%0A`;
+        message += `📍 *Endereço:* ${address}\n\n`;
+    }
+
+    if(payment === "Dinheiro" && changeValue){
+        message += `💵 *Troco para:* R$ ${changeValue}\n\n`;
     }
 
     const phone = "5579988342388";
 
     window.open(
-        `https://wa.me/${phone}?text=${message}`,
+        `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
         "_blank"
     );
-
 
     closeCheckoutModal();
 
     cart = [];
     total = 0;
 
-    localStorage.removeItem("cart");   
+    localStorage.removeItem("cart");
     localStorage.removeItem("total");
 
     updateCart();
-
-
-    const payment =
-    document.getElementById("paymentMethod").value;
-
-    const changeValue =
-    document.getElementById("changeValue").value;
-
-    message += `%0A💳 Pagamento:%0A`;
-    message += `${payment}%0A`;
-
-    if(payment === "Dinheiro" && changeValue){
-
-    message += `%0A💵 Troco para: R$ ${changeValue}%0A`;
-
-
-}
-
 }
 
 function openModal(product, price, caixaPreco){
