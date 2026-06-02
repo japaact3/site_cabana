@@ -5,7 +5,7 @@ let selectedProduct = "";
 let selectedPrice = 0;
 let quantity = 1;
 
-let unitsPerBox = 1;
+let boxPrice = 0;
 
 
 const precosBebidas = {
@@ -25,10 +25,9 @@ function confirmAddToCart(){
 
     let finalPrice = selectedPrice;
 
-    const UNIDADES_POR_CAIXA = 12;
 
     if(type === "Caixa"){
-        finalPrice = selectedPrice * unitsPerBox;
+        finalPrice = boxPrice;
     }
 
     cart.push({
@@ -69,6 +68,16 @@ function updateCart(){
 
     totalElement.textContent = total.toFixed(2);
     countElement.textContent = cart.length;
+
+    localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+    );
+
+    localStorage.setItem(
+        "total",
+        total
+    );
 }
 
 function sendWhatsApp(){
@@ -113,14 +122,23 @@ function sendWhatsApp(){
     );
 
     closeCheckoutModal();
+
+    cart = [];
+    total = 0;
+
+    localStorage.removeItem("cart");   
+    localStorage.removeItem("total");
+
+    updateCart();
 }
 
-function openModal(product, price, boxQuantity){
+function openModal(product, price, caixaPreco){
 
     selectedProduct = product;
     selectedPrice = price;
-    unitsPerBox = boxQuantity;
+    boxPrice = caixaPreco;
 
+    quantity = 1;
 
     document.getElementById("modalProductName").textContent = product;
     document.getElementById("quantity").textContent = quantity;
@@ -242,4 +260,33 @@ function toggleAddressField(){
     else{
         addressContainer.style.display = "none";
     }
+}
+
+window.onload = function(){
+
+    const savedCart =
+        localStorage.getItem("cart");
+
+    const savedTotal =
+        localStorage.getItem("total");
+
+    if(savedCart){
+
+        cart = JSON.parse(savedCart);
+
+        total = Number(savedTotal);
+
+        updateCart();
+    }
+}
+
+function clearCart(){
+
+    cart = [];
+    total = 0;
+
+    localStorage.removeItem("cart");
+    localStorage.removeItem("total");
+
+    updateCart();
 }

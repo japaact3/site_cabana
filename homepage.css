@@ -244,3 +244,23 @@ header{
     border:1px solid #ccc;
     border-radius:8px;
 }
+
+.clear-cart-btn{
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#dc2626;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
