@@ -102,7 +102,7 @@ function sendWhatsApp(){
         message += `%0A📍 Endereço:%0A${address}%0A`;
     }
 
-    const phone = "5599999999999";
+    const phone = "5579988342388";
 
     window.open(
         `https://wa.me/${phone}?text=${message}`,
