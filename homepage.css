@@ -4,6 +4,10 @@
     box-sizing:border-box;
 }
 
+section{
+    margin-bottom:20px;
+}
+
 body{
 
     padding-top: 190px;
@@ -597,4 +601,159 @@ shake{
 
     font-size:16px;
 
+}
+
+#toast{
+
+    position:fixed;
+
+    bottom:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#16a34a;
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.2);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:9999;
+
+    transform:
+        translateX(-50%)
+        translateY(20px);
+
+}
+
+#toast.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+.categories{
+
+    display:flex;
+
+    gap:10px;
+
+    overflow-x:auto;
+
+    padding:10px 15px;
+
+    margin-bottom:10px;
+
+}
+
+.categories button{
+
+    flex:0 0 auto;
+
+    padding:10px 15px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:white;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.categories button:hover{
+    transform:scale(1.05);
+    background:#ff8800;
+    color:white;
+}
+
+.categories button.active{
+    background:#ff8800;
+    color:white;
+}
+
+.cart-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.5);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:999;
+}
+
+.cart-panel{
+
+    position:fixed;
+
+    top:0;
+    right:-100%;
+
+    width:85%;
+    max-width:350px;
+    height:100vh;
+
+    background:white;
+
+    padding:20px;
+
+    box-shadow:-5px 0 20px rgba(0,0,0,.2);
+
+    transition:.3s;
+
+    z-index:1000;
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+/* quando aberto */
+.cart-panel.open{
+    right:0;
+}
+
+.cart-overlay.open{
+    opacity:1;
+    visibility:visible;
+}
+
+.cart-panel{
+    transition:.35s cubic-bezier(.4,0,.2,1);
 }

@@ -18,6 +18,24 @@ const precosBebidas = {
 };
 
 
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2000);
+
+}
+
 function confirmAddToCart(){
 
     const type =
@@ -40,6 +58,10 @@ function confirmAddToCart(){
     total += finalPrice * quantity;
 
     updateCart();
+
+    showToast(
+    `✅ ${selectedProduct} adicionado ao carrinho`
+    );
 
     closeModal();
 }
@@ -82,6 +104,7 @@ function updateCart(){
 
 function sendWhatsApp(){
 
+
     const deliveryType =
         document.getElementById("deliveryType").value;
 
@@ -121,6 +144,7 @@ function sendWhatsApp(){
         "_blank"
     );
 
+
     closeCheckoutModal();
 
     cart = [];
@@ -144,6 +168,7 @@ function sendWhatsApp(){
     if(payment === "Dinheiro" && changeValue){
 
     message += `%0A💵 Troco para: R$ ${changeValue}%0A`;
+
 
 }
 
@@ -248,10 +273,13 @@ function updateComboPrice(){
 
 function openCheckoutModal(){
 
+
     if(cart.length === 0){
         alert("Seu carrinho está vazio!");
         return;
     }
+
+    closeCart();
 
     document.getElementById("checkoutModal")
         .style.display = "flex";
@@ -306,6 +334,7 @@ function clearCart(){
     localStorage.removeItem("total");
 
     updateCart();
+    closeCart();
 }
 
 function toggleChangeField(){
@@ -395,4 +424,46 @@ function searchProducts(){
 
     });
 
+}
+
+function filterCategory(category){
+
+    document.querySelectorAll(".categories button")
+    .forEach(btn => btn.classList.remove("active"));
+
+    event.target.classList.add("active");
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        const cardCategory =
+            card.getAttribute("data-category");
+
+        if(category === "all" || cardCategory === category){
+            card.style.display = "flex";
+        }else{
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+function openCart(){
+
+    document.querySelector(".cart-panel")
+        .classList.add("open");
+
+    document.querySelector(".cart-overlay")
+        .classList.add("open");
+}
+
+function closeCart(){
+
+    document.querySelector(".cart-panel")
+        .classList.remove("open");
+
+    document.querySelector(".cart-overlay")
+        .classList.remove("open");
 }

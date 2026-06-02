@@ -20,8 +20,8 @@
         <h1>CABANA DAS BEBIDAS</h1>
     </div>
 
-    <div class="cart-icon">
-        🛒 <span id="cart-count">0</span>
+    <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
     </div>
 </header>
 
@@ -44,6 +44,16 @@
 
 </section>
 
+<div class="categories">
+
+    <button onclick="filterCategory('all')">Todos</button>
+    <button onclick="filterCategory('cerveja')">🍺 Cervejas</button>
+    <button onclick="filterCategory('whisky')">🍹 Whisky</button>
+    <button onclick="filterCategory('energetico')">⚡ Energéticos</button>
+    <button onclick="filterCategory('copao')">🍹 Copões</button>
+
+</div>
+
 
 
 <main class="cards">
@@ -56,7 +66,7 @@
         <span></span>
     </div>
 
-    <div class="card">
+    <div class="card" data-category="cerveja">
 
         <div class="badge">
             🔥 MAIS VENDIDO
@@ -71,7 +81,7 @@
         </button>
     </div>
 
-    <div class="card">
+    <div class="card" data-category="cerveja">
         <img src="./images/heinekenlata.png" alt="">
         <h3>heineken Lata</h3>
         <p>R$ 5,75</p>
@@ -80,7 +90,12 @@
         </button>
     </div>
 
-    <div class="card">
+    <div class="card" data-category="cerveja">
+
+        <div class="badge">
+            ⭐ DESTAQUE
+        </div>
+
         <img src="./images/budweiserlata.png" alt="">
         <h3>budweiser Lata</h3>
         <p>R$ 4,25</p>
@@ -89,7 +104,7 @@
         </button>
     </div>
 
-    <div class="card">
+    <div class="card" data-category="cerveja">
         <img src="./images/budweiserlong.jfif" alt="">
         <h3>Budweiser Long</h3>
         <p>R$ 6,00</p>
@@ -99,7 +114,12 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="cerveja">
+
+        <div class="badge">
+            🔥 MAIS VENDIDO
+        </div>
+
         <img src="./images/amstellata.png" alt="">
         <h3>Amstel Lata</h3>
         <p>R$ 4,00</p>
@@ -109,7 +129,7 @@
     </div>
 
     
-    <div class="card">
+    <div class="card" data-category="cerveja">
         <img src="./images/itaipavalata.png" alt="">
         <h3>Itaipava Lata</h3>
         <p>R$ 3,00</p>
@@ -118,7 +138,7 @@
         </button>
     </div>
 
-    <div class="card">
+    <div class="card" data-category="cerveja">
         <img src="./images/skollata.png" alt="">
         <h3>Skol Lata</h3>
         <p>R$ 4,00</p>
@@ -128,7 +148,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="cerveja">
         <img src="./images/brahmalata.jfif" alt="">
         <h3>Brahma Lata</h3>
         <p>R$ 4,00</p>
@@ -178,7 +198,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="energetico">
         <img src="./images/energup2l.jfif" alt="">
         <h3>EnergUp 2L</h3>
         <p>R$ 13,00</p>
@@ -188,7 +208,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="energetico">
         <img src="./images/bally2l.jfif" alt="">
         <h3>Energético Bally 2L</h3>
         <p>R$ 17,00</p>
@@ -198,7 +218,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="energetico">
         <img src="./images/redbull.jfif" alt="">
         <h3>Red Bull Lata</h3>
         <p>R$ 11,00</p>
@@ -208,7 +228,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="whisky">
         <img src="./images/whitehorse.jfif" alt="">
         <h3>Whisky White Horse</h3>
         <p>R$ 85,00</p>
@@ -218,7 +238,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="whisky">
 
         <div class="badge">
             ⭐ DESTAQUE
@@ -234,7 +254,12 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="whisky">
+
+        <div class="badge">
+            ⭐ DESTAQUE
+        </div>
+
         <img src="./images/blackwhite.jfif" alt="">
         <h3>Whisky Black White</h3>
         <p>R$ 75,00</p>
@@ -244,7 +269,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" data-category="copao">
 
         <div class="badge">
             ⭐ DESTAQUE
@@ -274,21 +299,7 @@
 
 </main>
 
-<section class="cart">
-    <h2>Seu Pedido</h2>
 
-    <ul id="cart-items"></ul>
-
-    <h3>Total: R$ <span id="total">0.00</span></h3>
-
-    <button class="clear-cart-btn" onclick="clearCart()">
-            🗑️ Limpar Carrinho
-    </button>
-
-    <button class="whatsapp-btn" onclick="openCheckoutModal()">
-        Finalizar Pedido
-    </button>
-</section>
 
 
 
@@ -492,6 +503,28 @@
     </div>
 
 </footer>
+
+<div id="toast"></div>
+
+<div class="cart-overlay" onclick="closeCart()"></div>
+
+<div class="cart-panel">
+
+    <h2>🛒 Seu Pedido</h2>
+
+    <ul id="cart-items"></ul>
+
+    <h3>Total: R$ <span id="total">0.00</span></h3>
+
+    <button class="clear-cart-btn" onclick="clearCart()">
+        🗑️ Limpar Carrinho
+    </button>
+
+    <button class="whatsapp-btn" onclick="openCheckoutModal()">
+        Finalizar Pedido
+    </button>
+
+</div>
 
 <script src="main.js"></script>
 </body>
