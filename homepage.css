@@ -35,10 +35,25 @@ header{
 }
 
 .banner{
-    background:#ff8800;
+    margin:15px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff8800,
+            #ff5e00
+        );
+
     color:white;
+
     text-align:center;
-    padding:30px 15px;
+
+    box-shadow:
+        0 8px 20px rgba(255,136,0,.3);
 }
 
 .cards{
