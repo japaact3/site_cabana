@@ -35,8 +35,8 @@
     <div class="card">
         <img src="./images/heinekenlong.png" alt="">
         <h3>Heineken Long Neck</h3>
-        <p>R$ 6,99</p>
-        <button onclick="openModal('Heineken Long Neck', 6.99, 6)">
+        <p>R$ 7,50</p>
+        <button onclick="openModal('Heineken Long Neck', 7.50, 6)">
             Adicionar
         </button>
     </div>
@@ -62,8 +62,8 @@
     <div class="card">
         <img src="./images/heinekenlata.png" alt="">
         <h3>heineken Lata</h3>
-        <p>R$ 6,00</p>
-        <button onclick="openModal('Heineken Lata', 6.00, 12)">
+        <p>R$ 5,75</p>
+        <button onclick="openModal('Heineken Lata', 5.75, 12)">
             Adicionar
         </button>
     </div>
@@ -73,12 +73,12 @@
     <div class="card">
         <img src="./images/imgcopao.png" alt="Combo Personalizado">
 
-        <h3>Monte seu Combo</h3>
+        <h3>Monte seu Copão</h3>
 
-        <p>A partir de R$ 16,00</p>
+        <p>A partir de R$ 13,00</p>
 
         <button onclick="openComboModal()">
-            Montar Combo
+            Montar Copão
         </button>
     </div>
 
@@ -143,16 +143,19 @@
 
         <span class="close" onclick="closeComboModal()">&times;</span>
 
-        <h2>Monte seu Combo</h2>
+        <h2>Monte seu Copão</h2>
 
 
         <div class="option-group">
             <label>Bebida</label>
 
             <select id="comboDrink" onchange="updateComboPrice()">
-                <option>Vodka</option>
-                <option>Gin</option>
-                <option>Whisky</option>
+                <option>Vodka Slova</option>
+                <option>Vodka Smirnoff</option>
+                <option>Gin</option>      
+                <option>Whisky Black White</option>
+                <option>Whisky White Horse</option>
+                <option>Whisky Red Label</option>
             </select>
         </div>
 
@@ -161,9 +164,9 @@
             <label>Gelo</label>
 
             <select id="comboIce">
-                <option>Morango</option>
+                <option>🍓 Morango</option>
                 <option>Melancia</option>
-                <option>Maçã Verde</option>
+                <option>🍏 Maçã Verde</option>
                 <option>Côco</option>
             </select>
         </div>

@@ -9,9 +9,12 @@ let unitsPerBox = 1;
 
 
 const precosBebidas = {
-    "Vodka": 18,
+    "Vodka Slova": 13,
+    "Vodka Smirnoff": 15,
     "Gin": 16,
-    "Whisky": 22
+    "Whisky Black White": 16,
+    "Whisky White Horse": 18,
+    "Whisky Red Label": 20
 };
 
 
@@ -171,9 +174,12 @@ function addCombo(){
         document.getElementById("comboEnergy").value;
 
     const precosBebidas = {
-    "Vodka": 18,
+    "Vodka Slova": 13,
+    "Vodka Smirnoff": 15,
     "Gin": 16,
-    "Whisky": 22
+    "Whisky Black White": 16,
+    "Whisky White Horse": 18,
+    "Whisky Red Label": 20
     };
 
     const preco = precosBebidas[bebida];
