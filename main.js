@@ -323,3 +323,76 @@ function toggleChangeField(){
         container.style.display = "none";
     }
 }
+
+const cartIcon =
+    document.querySelector(".cart-icon");
+
+cartIcon.classList.add("shake");
+
+setTimeout(() => {
+    cartIcon.classList.remove("shake");
+}, 500);
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const banner =
+        document.getElementById("bannerText");
+
+    const mensagens = [
+        "🍻 Melhores Preços da Região",
+        "🚚 Entrega Rápida",
+        "🔥 Promoções Toda Semana"
+    ];
+
+    let i = 0;
+
+    setInterval(() => {
+
+        banner.style.opacity = "0";
+
+        setTimeout(() => {
+
+            i = (i + 1) % mensagens.length;
+
+            banner.textContent = mensagens[i];
+
+            banner.style.opacity = "1";
+
+        }, 300);
+
+    }, 3000);
+
+});
+
+function searchProducts(){
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const cards =
+        document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        const title =
+            card.querySelector("h3")
+            .textContent
+            .toLowerCase();
+
+        if(title.includes(search)){
+
+            card.style.display = "flex";
+
+        }
+        else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
