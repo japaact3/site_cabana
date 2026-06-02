@@ -115,8 +115,10 @@ function sendWhatsApp(){
 
     cart.forEach(item => {
 
-        message +=
-            `• ${item.product} - R$ ${(item.price * item.quantity).toFixed(2)}%0A`;
+    message += `• ${item.product}\n`;
+    message += `  Tipo: ${item.type}\n`;
+    message += `  Quantidade: ${item.quantity}\n`;
+    message += `  Valor: R$ ${item.price}\n\n`;
 
     });
 
