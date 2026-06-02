@@ -1,142 +1,239 @@
+let cart = [];
+let total = 0;
 
-let carrinho = []
-let total = 0
+let selectedProduct = "";
+let selectedPrice = 0;
+let quantity = 1;
 
-function passPage() {
-    window.location.href = "#produtos"
-}
+let unitsPerBox = 1;
 
-function abrirModal(produto, preco) {
 
-    document.getElementById("modal").style.display = "flex"
+const precosBebidas = {
+    "Vodka": 18,
+    "Gin": 16,
+    "Whisky": 22
+};
 
-    document.getElementById("modal-produto").innerText = produto
 
-    document.getElementById("quantidade").value = 1
+function confirmAddToCart(){
 
-    window.produtoAtual = produto
+    const type =
+        document.getElementById("productType").value;
 
-    window.precoAtual = preco
-}
+    let finalPrice = selectedPrice;
 
-function fecharModal() {
+    const UNIDADES_POR_CAIXA = 12;
 
-    document.getElementById("modal").style.display = "none"
-}
-
-function adicionarCarrinho() {
-
-    let quantidade = parseInt(
-        document.getElementById("quantidade").value
-    )
-
-    let tipo = document.getElementById("tipo").value
-
-    let precoFinal = 0
-
-    if (tipo == "caixa") {
-
-        precoFinal = (window.precoAtual * 12) * quantidade
-
-    } else {
-
-        precoFinal = window.precoAtual * quantidade
+    if(type === "Caixa"){
+        finalPrice = selectedPrice * unitsPerBox;
     }
 
-    carrinho.push(
-        `${window.produtoAtual} - ${quantidade} ${tipo}`
-    )
+    cart.push({
+        product: selectedProduct,
+        price: finalPrice,
+        quantity: quantity,
+        type: type
+    });
 
-    total += precoFinal
+    total += finalPrice * quantity;
 
-    atualizarCarrinho()
+    updateCart();
 
-    fecharModal()
+    closeModal();
 }
 
-function atualizarCarrinho() {
+function updateCart(){
 
-    const lista =
-        document.getElementById("lista-carrinho")
+    const cartItems = document.getElementById("cart-items");
+    const totalElement = document.getElementById("total");
+    const countElement = document.getElementById("cart-count");
 
-    const totalTexto =
-        document.getElementById("total")
+    cartItems.innerHTML = "";
 
-    lista.innerHTML = ""
+    cart.forEach(item => {
 
-    carrinho.forEach(item => {
+        const li = document.createElement("li");
 
-        let li = document.createElement("li")
+        li.textContent =
+        `${item.product}
+        (${item.type})
+        x${item.quantity}
+        - R$ ${(item.price * item.quantity).toFixed(2)}`;
 
-        li.textContent = item
+        cartItems.appendChild(li);
 
-        lista.appendChild(li)
-    })
+    });
 
-    totalTexto.innerText =
-        `Total: R$ ${total.toFixed(2)}`
+    totalElement.textContent = total.toFixed(2);
+    countElement.textContent = cart.length;
+}
+
+function sendWhatsApp(){
+
+    const deliveryType =
+        document.getElementById("deliveryType").value;
+
+    const address =
+        document.getElementById("deliveryAddress").value;
+
+    let message = "🍻 PEDIDO CABANA DAS BEBIDAS%0A%0A";
+
+    cart.forEach(item => {
+
+        message +=
+            `• ${item.product} - R$ ${(item.price * item.quantity).toFixed(2)}%0A`;
+
+    });
+
+    message += `%0A💰 Total: R$ ${total.toFixed(2)}%0A`;
+
+    message += `%0A📦 Forma de Recebimento:%0A`;
+    message += `${deliveryType}%0A`;
+
+    if(deliveryType === "Entrega"){
+
+        if(address.trim() === ""){
+
+            alert("Digite o endereço de entrega.");
+
+            return;
+        }
+
+        message += `%0A📍 Endereço:%0A${address}%0A`;
+    }
+
+    const phone = "5599999999999";
+
+    window.open(
+        `https://wa.me/${phone}?text=${message}`,
+        "_blank"
+    );
+
+    closeCheckoutModal();
+}
+
+function openModal(product, price, boxQuantity){
+
+    selectedProduct = product;
+    selectedPrice = price;
+    unitsPerBox = boxQuantity;
+
+
+    document.getElementById("modalProductName").textContent = product;
+    document.getElementById("quantity").textContent = quantity;
+
+    document.getElementById("productModal").style.display = "flex";
+}
+
+function closeModal(){
+
+    document.getElementById("productModal").style.display = "none";
+}
+
+function changeQuantity(value){
+
+    quantity += value;
+
+    if(quantity < 1){
+        quantity = 1;
+    }
+
+    document.getElementById("quantity").textContent = quantity;
 }
 
 
-function finalizarPedido(){
 
-    if(carrinho.length == 0){
+/*  Modal do card dos copao */
 
-        alert("Seu carrinho está vazio!")
 
-        return
-    }
 
-    let tipoEntrega = document.getElementById("tipo-entrega").value
+function openComboModal(){
+    document.getElementById("comboModal")
+        .style.display = "flex";
 
-    let endereco = document.getElementById("endereco").value
-
-    if(tipoEntrega == "Entrega" && endereco == ""){
-
-        alert("Digite o endereço para entrega!")
-
-        return
-    }
-
-    let mensagem = "🍹 *NOVO PEDIDO - CABANA DAS BEBIDAS* %0A%0A"
-
-    carrinho.forEach(item => {
-
-        mensagem += `• ${item}%0A`
-
-    })
-
-    mensagem += `%0A💰 Total: R$ ${total.toFixed(2)}%0A`
-
-    mensagem += `%0A🚚 Tipo: ${tipoEntrega}%0A`
-
-    if(tipoEntrega == "Entrega"){
-
-        mensagem += `📍 Endereço: ${endereco}%0A`
-    }
-
-    let telefone = "5579988342388"
-
-    let url = `https://wa.me/${telefone}?text=${mensagem}`
-
-    window.open(url, "_blank")
+    updateComboPrice();
 }
 
+function closeComboModal(){
+    document.getElementById("comboModal").style.display = "none";
+}
 
-function mostrarEndereco(){
+function addCombo(){
 
-    let tipo =
-        document.getElementById("tipo-entrega").value
 
-    let endereco =
-        document.getElementById("endereco")
+    const gelo =
+        document.getElementById("comboIce").value;
 
-    if(tipo == "Entrega"){
+    const bebida =
+        document.getElementById("comboDrink").value;
 
-        endereco.style.display = "block"
+    const energetico =
+        document.getElementById("comboEnergy").value;
 
-    } else {
+    const precosBebidas = {
+    "Vodka": 18,
+    "Gin": 16,
+    "Whisky": 22
+    };
 
-        endereco.style.display = "none"
+    const preco = precosBebidas[bebida];
+
+    cart.push({
+        product:
+        `Combo (${bebida},  ${gelo},  ${energetico})`,
+        price: preco,
+        quantity: 1,
+        type: "Copão"
+    });
+
+    total += preco;
+
+    updateCart();
+
+    closeComboModal();
+}
+
+function updateComboPrice(){
+
+    const bebida =
+        document.getElementById("comboDrink").value;
+
+    const preco =
+        precosBebidas[bebida];
+
+    document.getElementById("comboPrice")
+        .textContent = `R$ ${preco.toFixed(2)}`;
+}
+
+function openCheckoutModal(){
+
+    if(cart.length === 0){
+        alert("Seu carrinho está vazio!");
+        return;
+    }
+
+    document.getElementById("checkoutModal")
+        .style.display = "flex";
+}
+
+function closeCheckoutModal(){
+
+    document.getElementById("checkoutModal")
+        .style.display = "none";
+}
+
+function toggleAddressField(){
+
+    const deliveryType =
+        document.getElementById("deliveryType").value;
+
+    const addressContainer =
+        document.getElementById("addressContainer");
+
+    if(deliveryType === "Entrega"){
+        addressContainer.style.display = "block";
+    }
+    else{
+        addressContainer.style.display = "none";
     }
 }

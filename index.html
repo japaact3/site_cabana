@@ -1,359 +1,240 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CABANA DAS BEBIDAS</title>
-
+    <title>Depósito Cabana</title>
     <link rel="stylesheet" href="homepage.css">
 </head>
-
 <body>
 
-    <header>
-
-        <div class="logo">
-            🍹 CABANA DAS BEBIDAS
-        </div>
-
-        <nav>
-            <a href="#home">Início</a>
-            <a href="#produtos">Bebidas</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#contato">Contato</a>
-        </nav>
-
-    </header>
-
-
-
-    <section class="hero" id="home">
-
-        <div class="hero-text">
-
-            <h1>
-                Seu depósito de bebidas favorito!!
-            </h1>
-
-            <p>
-                As melhores bebidas geladas com entrega rápida na sua região.
-            </p>
-
-            <button onclick="passPage()">
-                Peça Agora
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <section class="produtos" id="produtos">
-
-        <h2>Nossos Produtos</h2>
-
-        <div class="cards">
-
-
-
-            <div class="card">
-
-                <img src="imagens/heinekenlong.png" alt="Heineken">
-
-                <h3>Heineken Long Neck</h3>
-
-                <p>
-                    Cerveja premium extremamente gelada.
-                </p>
-
-                <span>R$ 7,50</span>
-
-                <button onclick="abrirModal('Heineken Long Neck', 7.50)">
-                    Comprar
-                </button>
-
-            </div>
-
-
-
-            <div class="card">
-
-                <img src="imagens/budweiserlata.png" alt="Budweiser">
-
-                <h3>Budweiser Lata</h3>
-
-                <p>
-                    Cerveja premium extremamente gelada.
-                </p>
-
-                <span>R$ 6,00</span>
-
-                <button onclick="abrirModal('Budweiser Lata', 6.00)">
-                    Comprar
-                </button>
-
-            </div>
-
-
-
-            <div class="card">
-
-                <img src="imagens/amstellata.png" alt="Amstel">
-
-                <h3>Amstel</h3>
-
-                <p>
-                    Cerveja extremamente gelada.
-                </p>
-
-                <span>R$ 4,00</span>
-
-                <button onclick="abrirModal('Amstel Lata', 4.00)">
-                    Comprar
-                </button>
-
-            </div>
-
-
-
-            <div class="card">
-
-                <img src="imagens/itaipavalata.png" alt="Itaipava">
-
-                <h3>Itaipava Lata</h3>
-
-                <p>
-                    Cerveja extremamente gelada.
-                </p>
-
-                <span>R$ 3,75</span>
-
-                <button onclick="abrirModal('Itaipava Lata', 3.75)">
-                    Comprar
-                </button>
-
-            </div>
-
-
-
-
-            <div class="card">
-
-                <img src="imagens/skollata.png" alt="Itaipava">
-
-                <h3>Skol Lata</h3>
-
-                <p>
-                    Cerveja extremamente gelada.
-                </p>
-
-                <span>R$ 3,75</span>
-
-                <button onclick="abrirModal('Skol Lata', 3.75)">
-                    Comprar
-                </button>
-
-            </div>
-
-
-
-            <div class="card">
-
-                <img src="imagens/heinekenlata.png" alt="Itaipava">
-
-                <h3>Heineken Lata</h3>
-
-                <p>
-                    Cerveja extremamente gelada.
-                </p>
-
-                <span>R$ 3,75</span>
-
-                <button onclick="abrirModal('Heineken Lata', 3.75)">
-                    Comprar
-                </button>
-
-            </div>
-
-
-
-            <div class="card">
-
-                <img src="imagens/redlabel.png" alt="redlabel">
-
-                <h3>Red Label</h3>
-
-                <p>
-                    Whisky.
-                </p>
-
-                <span>R$ 3,75</span>
-
-                <button onclick="abrirModal('Red Label', 3.75)">
-                    Comprar
-                </button>
-
-            </div>
-
-
-
-
-
-        </div>
-
-    </section>
-
-
-
-    <section class="carrinho">
-
-        <h2>🛒 Carrinho</h2>
-
-        <ul id="lista-carrinho"></ul>
-
-        <h3 id="total">
-            Total: R$ 0,00
-        </h3>
-
-
-
-        <div class="entrega-box">
-
-            <label>
-                Forma de Recebimento:
-            </label>
-
-            <select id="tipo-entrega" onchange="mostrarEndereco()">
-
-                <option>
-                    Retirar na Loja
-                </option>
-
-                <option>
-                    Entrega
-                </option>
-
-            </select>
-
-
-
-            <input
-                type="text"
-                id="endereco"
-                placeholder="Digite seu endereço"
-            >
-
-        </div>
-
-
-
-        <button
-            class="finalizar"
-            onclick="finalizarPedido()"
-        >
-            Finalizar Pedido no WhatsApp
+<header>
+    <div class="logo-container">
+        <img src="./images/logoCabana.jpg" alt="Logo" class="logo">
+        <h1>CABANA DAS BEBIDAS</h1>
+    </div>
+
+    <div class="cart-icon">
+        🛒 <span id="cart-count">0</span>
+    </div>
+</header>
+
+<section class="banner">
+    <h2>Bebidas Geladas e Entrega Rápida</h2>
+</section>
+
+<main class="cards">
+
+    <div class="card">
+        <img src="./images/heinekenlong.png" alt="">
+        <h3>Heineken Long Neck</h3>
+        <p>R$ 6,99</p>
+        <button onclick="openModal('Heineken Long Neck', 6.99, 6)">
+            Adicionar
         </button>
+    </div>
 
-    </section>
+    <div class="card">
+        <img src="./images/budweiserlata.png" alt="">
+        <h3>budweiser Lata</h3>
+        <p>R$ 6,00</p>
+        <button onclick="openModal('budweiser Lata', 6.00, 12)">
+            Adicionar
+        </button>
+    </div>
 
+    <div class="card">
+        <img src="./images/amstellata.png" alt="">
+        <h3>Amstel Lata</h3>
+        <p>R$ 4,00</p>
+        <button onclick="openModal('Amstel Lata', 4.00, 12)">
+            Adicionar
+        </button>
+    </div>
 
-
-    <section class="sobre" id="sobre">
-
-        <h2>Sobre Nós</h2>
-
-        <p>
-            Trabalhamos com entrega rápida,
-            bebidas geladas e atendimento
-            de qualidade.
-        </p>
-
-    </section>
-
-
-
-    <footer id="contato">
-
-        <h3>Contato</h3>
-
-        <p>
-            📞 (79) 99999-9999
-        </p>
-
-        <p>
-            📍 Rua Venerável Valdomiro Teófilo dos Santos
-        </p>
-
-        <p>
-            © CABANA DAS BEBIDAS
-        </p>
-
-    </footer>
-
-
-
-    <!-- MODAL -->
-
-    <div class="modal" id="modal">
-
-        <div class="modal-content">
-
-            <span
-                class="fechar"
-                onclick="fecharModal()"
-            >
-                &times;
-            </span>
-
-            <h2 id="modal-produto"></h2>
-
-
-
-            <label>
-                Tipo:
-            </label>
-
-            <select id="tipo">
-
-                <option value="unidade">
-                    Unidade
-                </option>
-
-                <option value="caixa">
-                    Caixa
-                </option>
-
-            </select>
-
-
-
-            <label>
-                Quantidade:
-            </label>
-
-            <input
-                type="number"
-                id="quantidade"
-                min="1"
-                value="1"
-            >
-
-
-
-            <button onclick="adicionarCarrinho()">
-
-                Adicionar ao Carrinho
-
-            </button>
-
-        </div>
-
+    <div class="card">
+        <img src="./images/heinekenlata.png" alt="">
+        <h3>heineken Lata</h3>
+        <p>R$ 6,00</p>
+        <button onclick="openModal('Heineken Lata', 6.00, 12)">
+            Adicionar
+        </button>
     </div>
 
 
 
-    <script src="main.js"></script>
+    <div class="card">
+        <img src="./images/imgcopao.png" alt="Combo Personalizado">
 
+        <h3>Monte seu Combo</h3>
+
+        <p>A partir de R$ 16,00</p>
+
+        <button onclick="openComboModal()">
+            Montar Combo
+        </button>
+    </div>
+
+</main>
+
+<section class="cart">
+    <h2>Seu Pedido</h2>
+
+    <ul id="cart-items"></ul>
+
+    <h3>Total: R$ <span id="total">0.00</span></h3>
+
+    <button class="whatsapp-btn" onclick="openCheckoutModal()">
+        Finalizar Pedido
+    </button>
+</section>
+
+
+
+<div id="productModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2 id="modalProductName"></h2>
+
+        <div class="option-group">
+            <label>Tipo:</label>
+
+            <select id="productType">
+                <option value="Unidade">Unidade</option>
+                <option value="Caixa">Caixa</option>
+            </select>
+        </div>
+
+        <div class="option-group">
+            <label>Quantidade:</label>
+
+            <div class="quantity-box">
+                <button onclick="changeQuantity(-1)">-</button>
+
+                <span id="quantity">1</span>
+
+                <button onclick="changeQuantity(1)">+</button>
+            </div>
+        </div>
+
+        <button class="add-btn" onclick="confirmAddToCart()">
+            Adicionar ao Carrinho
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div id="comboModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeComboModal()">&times;</span>
+
+        <h2>Monte seu Combo</h2>
+
+
+        <div class="option-group">
+            <label>Bebida</label>
+
+            <select id="comboDrink" onchange="updateComboPrice()">
+                <option>Vodka</option>
+                <option>Gin</option>
+                <option>Whisky</option>
+            </select>
+        </div>
+
+
+        <div class="option-group">
+            <label>Gelo</label>
+
+            <select id="comboIce">
+                <option>Morango</option>
+                <option>Melancia</option>
+                <option>Maçã Verde</option>
+                <option>Côco</option>
+            </select>
+        </div>
+
+
+        <div class="option-group">
+            <label>Energético</label>
+
+            <select id="comboEnergy">
+                <option>EnergUp</option>
+                <option>Melancia</option>
+                <option>Maçã Verde</option>
+            </select>
+        </div>
+
+
+        <div class="price-preview">
+            Preço do Copão:
+            <strong id="comboPrice">R$0,00</strong>
+        </div>
+
+        <button class="add-btn" onclick="addCombo()">
+            Adicionar ao Carrinho
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="checkoutModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeCheckoutModal()">
+            &times;
+        </span>
+
+        <h2>Finalizar Pedido</h2>
+
+        <div class="option-group">
+
+            <label>Forma de recebimento</label>
+
+            <select id="deliveryType" onchange="toggleAddressField()">
+                <option value="Retirada">Retirada no Local</option>
+                <option value="Entrega">Entrega</option>
+            </select>
+
+        </div>
+
+        <div
+            id="addressContainer"
+            style="display:none;"
+            class="option-group"
+        >
+
+            <label>Endereço</label>
+
+            <input
+                type="text"
+                id="deliveryAddress"
+                placeholder="Rua, número, bairro..."
+            >
+
+        </div>
+
+        <button
+            class="add-btn"
+            onclick="sendWhatsApp()"
+        >
+            Enviar Pedido
+        </button>
+
+    </div>
+
+</div>
+
+<script src="main.js"></script>
 </body>
 </html>
