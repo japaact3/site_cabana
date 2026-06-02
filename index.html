@@ -33,6 +33,12 @@
 <main class="cards">
 
     <div class="card">
+
+        <div class="badge">
+            🔥 MAIS VENDIDO
+        </div>
+
+
         <img src="./images/heinekenlong.png" alt="">
         <h3>Heineken Long Neck</h3>
         <p>R$ 7,50</p>
@@ -189,6 +195,12 @@
 
 
     <div class="card">
+
+        <div class="badge">
+            ⭐ DESTAQUE
+        </div>
+
+
         <img src="./images/redlabel.png" alt="">
         <h3>Whisky Red Label</h3>
         <p>R$ 120,00</p>
@@ -209,6 +221,12 @@
 
 
     <div class="card">
+
+        <div class="badge">
+            ⭐ DESTAQUE
+        </div>
+
+
         <img src="./images/imgcopao.png" alt="Combo Personalizado">
 
         <h3>Monte seu Copão</h3>
@@ -371,6 +389,34 @@
             </select>
 
         </div>
+
+        <div class="option-group">
+
+            <label>Forma de Pagamento</label>
+
+            <select id="paymentMethod" onchange="toggleChangeField()">
+                <option value="PIX">PIX</option>
+                <option value="Cartão">Cartão</option>
+                <option value="Dinheiro">Dinheiro</option>
+            </select>
+
+        </div>
+
+        <div
+            id="changeContainer"
+            style="display:none;"
+            class="option-group"
+        >
+
+            <label>Troco para quanto?</label>
+
+            <input
+                type="number"
+                id="changeValue"
+                placeholder="Ex: 100"
+            >
+
+</div>
 
         <div
             id="addressContainer"

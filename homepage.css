@@ -5,6 +5,10 @@
 }
 
 body{
+
+    padding-top: 190px;
+
+
     font-family: 'Poppins', sans-serif;
 
     background-color: #1f2937;
@@ -23,8 +27,11 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    position:sticky;
+    position:fixed;
     top:0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .logo{
@@ -35,9 +42,10 @@ header{
 }
 
 .banner{
+
     margin:15px;
 
-    padding:25px;
+    padding:30px 15px;
 
     border-radius:20px;
 
@@ -64,6 +72,8 @@ header{
 }
 
 .card{
+    position: relative;
+
     display: flex;
     flex-direction: column;
 
@@ -263,4 +273,47 @@ header{
     font-weight:bold;
 
     cursor:pointer;
+}
+
+.badge{
+
+    animation:pulse 2s infinite;
+
+    position:absolute;
+
+    top:10px;
+    left:10px;
+
+    background:#ff3b30;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    z-index:10;
+
+    box-shadow:
+        0 3px 8px rgba(0,0,0,.2);
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
 }

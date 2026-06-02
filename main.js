@@ -130,6 +130,23 @@ function sendWhatsApp(){
     localStorage.removeItem("total");
 
     updateCart();
+
+
+    const payment =
+    document.getElementById("paymentMethod").value;
+
+    const changeValue =
+    document.getElementById("changeValue").value;
+
+    message += `%0A💳 Pagamento:%0A`;
+    message += `${payment}%0A`;
+
+    if(payment === "Dinheiro" && changeValue){
+
+    message += `%0A💵 Troco para: R$ ${changeValue}%0A`;
+
+}
+
 }
 
 function openModal(product, price, caixaPreco){
@@ -289,4 +306,20 @@ function clearCart(){
     localStorage.removeItem("total");
 
     updateCart();
+}
+
+function toggleChangeField(){
+
+    const payment =
+        document.getElementById("paymentMethod").value;
+
+    const container =
+        document.getElementById("changeContainer");
+
+    if(payment === "Dinheiro"){
+        container.style.display = "block";
+    }
+    else{
+        container.style.display = "none";
+    }
 }
