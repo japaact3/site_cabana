@@ -124,7 +124,7 @@ function sendWhatsApp(){
         message += `🍺 *${item.product}*\n`;
         message += `   ▸ Tipo: ${item.type}\n`;
         message += `   ▸ Qtd: ${item.quantity}\n`;
-        message += `   ▸ Valor: R$ ${item.price}\n`;
+        message += `   ▸ Valor: R$ ${(item.price * item.quantity).toFixed(2)}\n`;
         message += "──────────────\n\n";
 
     });
