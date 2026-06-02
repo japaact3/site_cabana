@@ -111,18 +111,21 @@ function sendWhatsApp(){
     const address =
         document.getElementById("deliveryAddress").value;
 
-    let message = "🍻 PEDIDO CABANA DAS BEBIDAS%0A%0A";
+    let message = "🍻 *PEDIDO CABANA DAS BEBIDAS*\n";
+message += "━━━━━━━━━━━━━━\n\n";
 
-    cart.forEach(item => {
+cart.forEach(item => {
 
-    message += `• ${item.product}\n`;
-    message += `  Tipo: ${item.type}\n`;
-    message += `  Quantidade: ${item.quantity}\n`;
-    message += `  Valor: R$ ${item.price}\n\n`;
+    message += `🍺 *${item.product}*\n`;
+    message += `   ▸ Tipo: ${item.type}\n`;
+    message += `   ▸ Qtd: ${item.quantity}\n`;
+    message += `   ▸ Valor: R$ ${item.price}\n`;
+    message += "──────────────\n\n";
 
-    });
+});
 
-    message += `%0A💰 Total: R$ ${total.toFixed(2)}%0A`;
+    message += `💰 *TOTAL: R$ ${total.toFixed(2)}*\n`;
+    message += "━━━━━━━━━━━━━━";
 
     message += `%0A📦 Forma de Recebimento:%0A`;
     message += `${deliveryType}%0A`;
